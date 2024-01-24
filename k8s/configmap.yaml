@@ -3,8 +3,6 @@ kind: ConfigMap
 metadata:
   name: palworld-cm
 data:
-  PUID: "1000"
-  PGID: "1000"
   PORT: "8211" # Optional but recommended
   PLAYERS: "16" # Optional but recommended
   MULTITHREADING: "true"

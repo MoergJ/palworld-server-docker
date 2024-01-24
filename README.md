@@ -38,8 +38,6 @@ services:
         - 8211:8211/udp
         - 27015:27015/udp
       environment:
-         - PUID=1000
-         - PGID=1000
          - PORT=8211 # Optional but recommended
          - PLAYERS=16 # Optional but recommended
          - MULTITHREADING=true
@@ -64,8 +62,6 @@ docker run -d \
     -p 8211:8211/udp \
     -p 27015:27015/udp \
     -v ./<palworld-folder>:/palworld/ \
-    -e PUID=1000 \
-    -e PGID=1000 \
     -e PORT=8211 \
     -e PLAYERS=16 \
     -e MULTITHREADING=true \
@@ -91,15 +87,11 @@ It is highly recommended you set the following environment values before startin
 
 * PLAYERS
 * PORT
-* PUID
-* PGID
 
 | Variable         | Info                                                                                                                                                                                               | Default Values | Allowed Values |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|----------------|
 | PLAYERS*         | Max amount of players that are able to join the server                                                                                                                                             | 16             | 1-31           |
 | PORT*            | UDP port that the server will expose                                                                                                                                                               | 8211           | 1024-65535     |
-| PUID*            | The uid of the user the server should run as                                                                                                                                                       | 1000           | !0             |
-| PGID*            | The gid of the group the server should run as                                                                                                                                                      | 1000           | !0             |
 | MULTITHREADING** | Improves performance in multi-threaded CPU environments. It is effective up to a maximum of about 4 threads, and allocating more than this number of threads does not make much sense.             | false          | true/false     |
 | COMMUNITY        | Whether or not the server shows up in the community server browser (USE WITH SERVER_PASSWORD)                                                                                                      | false          | true/false     |
 | PUBLIC_IP        | You can manually specify the global IP address of the network on which the server running.If not specified, it will be detected automatically. If it does not work well, try manual configuration. |                | x.x.x.x        |

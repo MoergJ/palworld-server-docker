@@ -12,8 +12,6 @@ RUN wget -q https://github.com/itzg/rcon-cli/releases/download/1.6.4/rcon-cli_1.
 RUN mv rcon-cli /usr/bin/rcon-cli
 
 ENV PORT= \
-    PUID=1000 \
-    PGID=1000 \
     PLAYERS= \
     MULTITHREADING=false \
     COMMUNITY=false \
@@ -30,12 +28,16 @@ ENV PORT= \
 COPY ./scripts/* /home/steam/server/
 RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh
 
+RUN mkdir /palworld && chown -R steam:steam /palworld
+
 RUN mv /home/steam/server/backup.sh /usr/local/bin/backup
 
 WORKDIR /home/steam/server
 
 HEALTHCHECK --start-period=5m \
     CMD pgrep "PalServer-Linux" > /dev/null || exit 1
+
+USER steam
 
 EXPOSE ${PORT} ${RCON_PORT}
 ENTRYPOINT ["/home/steam/server/init.sh"]

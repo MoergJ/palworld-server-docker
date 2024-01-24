@@ -37,6 +37,13 @@ spec:
           volumeMounts:
             - mountPath: /palworld
               name: datadir
+      initContainers:
+      - name: chwon
+        image: busybox
+        command: ["sh", "-c", "chown -R 1000:1000 /palworld"]
+        volumeMounts:
+        - mountPath: "/palworld"
+          name: datadir
       volumes:
       - name: datadir
         persistentVolumeClaim:

@@ -25,6 +25,9 @@ spec:
             - containerPort: 27015
               name: 27015-palworld
               protocol: UDP
+            - containerPort: 25575
+              name: rcon
+              protocol: TCP
           env:
             - name: ADMIN_PASSWORD
               valueFrom:
